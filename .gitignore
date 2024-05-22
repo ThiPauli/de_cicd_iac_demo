@@ -1,0 +1,6 @@
+# Virtual environments
+venv/
+
+# Airflow
+logs/
+config/
