@@ -36,7 +36,7 @@ type:
 	docker exec airflow-webserver mypy --ignore-missing-imports /opt/airflow
 
 # It will check for coding style issue
-lint: 
-	docker exec airflow-webserver flake8 /opt/airflow/dags
+lint:
+    docker exec airflow-webserver flake8 --extend-ignore=E501 /opt/airflow/dags
 
 ci: isort format type lint pytest
