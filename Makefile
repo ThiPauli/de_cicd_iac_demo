@@ -4,7 +4,11 @@
 docker-spin-up:
 	docker compose --env-file .env up airflow-init && docker compose --env-file .env up --build -d
 
-up: docker-spin-up
+# Adjust permissions for the relevant directories in the host environment
+set-host-perms:
+	sudo chmod -R u+rwx,g+rwx,o+rwx logs plugins dags tests
+
+up: set-host-perms docker-spin-up
 
 down:
 	docker compose down
