@@ -37,6 +37,6 @@ type:
 
 # It will check for coding style issue
 lint:
-    docker exec airflow-webserver flake8 --extend-ignore=E501 /opt/airflow/dags
+	docker exec airflow-webserver flake8 --ignore=E501 /opt/airflow/dags
 
 ci: isort format type lint pytest
