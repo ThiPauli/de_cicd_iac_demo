@@ -27,13 +27,13 @@ def print_goodbye():
 
 # Create the DAG
 dag = DAG(
-    'simple_dag',
+    'test_dag_ci_fail',
     default_args=default_args,
     description='A simple DAG',
     schedule_interval=None,
     start_date=datetime(2023, 1, 1),
     catchup=False,
-    tags=["etl"]
+    tags=["etl", "demo-cicd", "test"]
 )
 
 # Define the tasks
