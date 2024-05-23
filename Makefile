@@ -4,11 +4,11 @@
 docker-spin-up:
 	docker compose --env-file .env up airflow-init && docker compose --env-file .env up --build -d
 
-# Adjust permissions for the relevant directories
-perms:
-	docker exec airflow-webserver sudo chmod -R u+rwx,g+rwx,o+rwx /opt/airflow/tests /opt/airflow/logs /opt/airflow/plugins /opt/airflow/dags
+# Create necessary directories and adjust permissions in the host environment
+set-host-perms:
+	sudo mkdir -p logs plugins dags tests && sudo chmod -R u+rwx,g+rwx,o+rwx logs plugins dags tests
 
-up: docker-spin-up perms
+up: set-host-perms docker-spin-up
 
 down:
 	docker compose down
