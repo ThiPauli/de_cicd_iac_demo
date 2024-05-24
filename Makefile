@@ -29,7 +29,7 @@ format:
 
 # It will check the import order
 isort:
-	docker exec airflow-webserver isort --check-only .
+	docker exec airflow-webserver isort --check-only --profile black .
 
 # It will check for type issues
 type:
