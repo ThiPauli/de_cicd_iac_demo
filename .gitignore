@@ -9,3 +9,11 @@ config/
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Terraform
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*

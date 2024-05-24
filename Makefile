@@ -40,3 +40,21 @@ lint:
 	docker exec airflow-webserver flake8 --ignore=E501 /opt/airflow/dags
 
 ci: type lint pytest
+
+####################################################################################################################
+# Set up cloud infrastructure with Terraform
+
+tf-init:
+	terraform -chdir=./terraform init
+
+tf-format:
+	terraform -chdir=./terraform fmt -recursive
+
+infra-up:
+	terraform -chdir=./terraform apply
+
+infra-down:
+	terraform -chdir=./terraform destroy
+
+infra-config:
+	terraform -chdir=./terraform output
