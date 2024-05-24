@@ -17,19 +17,19 @@ sh:
 	docker exec -ti airflow-webserver bash
 
 ####################################################################################################################
-# Testing, auto formatting, type checks, & Lint checks
+# Testing, format checks, type checks, & Lint checks
 
 # It will test code to verify that behaves as expected
 pytest:
 	docker exec airflow-webserver pytest -p no:warnings -v /opt/airflow/tests
 
-# It will modify the files if necessary to correct code formatting
+# It will check the code formatting
 format:
-	docker exec airflow-webserver python -m black -S --line-length 79 .
+	docker exec airflow-webserver python -m black --check -S --line-length 79 .
 
-# It will modify the files if necessary to correct import order
+# It will check the import order
 isort:
-	docker exec airflow-webserver isort .
+	docker exec airflow-webserver isort --check-only .
 
 # It will check for type issues
 type:
