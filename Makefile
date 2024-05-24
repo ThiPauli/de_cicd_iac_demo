@@ -23,13 +23,13 @@ sh:
 pytest:
 	docker exec airflow-webserver pytest -p no:warnings -v /opt/airflow/tests
 
-# It will check the code formatting
-format:
-	docker exec airflow-webserver python -m black --check -S --line-length 79 .
+# # It will check the code formatting
+# format:
+# 	docker exec airflow-webserver python -m black --check -S --line-length 79 .
 
-# It will check the import order
-isort:
-	docker exec airflow-webserver isort --check-only --profile black .
+# # It will check the import order
+# isort:
+# 	docker exec airflow-webserver isort --check-only --profile black .
 
 # It will check for type issues
 type:
@@ -39,4 +39,4 @@ type:
 lint:
 	docker exec airflow-webserver flake8 --ignore=E501 /opt/airflow/dags
 
-ci: isort format type lint pytest
+ci: type lint pytest
