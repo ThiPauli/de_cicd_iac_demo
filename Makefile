@@ -58,3 +58,11 @@ infra-down:
 
 infra-config:
 	terraform -chdir=./terraform output
+
+# Helper command to connect via SSH into the EC2 instance provisioned by Terraform
+ssh-ec2:
+	terraform -chdir=./terraform output -raw private_key > private_key.pem && chmod 600 private_key.pem && ssh -o StrictHostKeyChecking=no -o IdentitiesOnly=yes -i private_key.pem ubuntu@$$(terraform -chdir=./terraform output -raw public_dns) && rm private_key.pem
+
+# Helper command to print out the private_key content from the EC2 instance
+privatekey-ec2:
+	terraform -chdir=./terraform output -raw private_key
