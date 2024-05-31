@@ -25,6 +25,9 @@ sudo apt install make
 echo 'Clone git repo to EC2'
 cd /home/ubuntu && git clone https://github.com/ThiPauli/de_cicd_iac_demo.git
 
+echo 'Change the ownership to deployment user (ubuntu)'
+sudo chown -R ubuntu:ubuntu /home/ubuntu/de_cicd_iac_demo
+
 echo 'CD to the root project'
 cd de_cicd_iac_demo
 
