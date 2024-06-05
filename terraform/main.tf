@@ -13,10 +13,10 @@ provider "aws" {
   profile = "default"
 }
 
-# # Include S3 bucket configuration
-# module "s3_bucket" {
-#   source = "./s3_bucket"
-# }
+# Include S3 bucket configuration
+module "s3_bucket" {
+  source = "./s3_bucket"
+}
 
 # Include VPC Network configuration
 module "network" {
