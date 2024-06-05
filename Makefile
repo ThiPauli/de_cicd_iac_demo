@@ -6,7 +6,7 @@ docker-spin-up:
 
 # Create necessary directories and adjust permissions in the host environment
 set-host-perms:
-	sudo mkdir -p logs plugins dags tests && sudo chmod -R u+rwx,g+rwx,o+rwx logs plugins dags tests
+	sudo mkdir -p logs plugins dags tests include && sudo chmod -R u+rwx,g+rwx,o+rwx logs plugins dags tests include
 
 up: set-host-perms docker-spin-up
 
