@@ -10,7 +10,7 @@ resource "aws_key_pair" "generated_key" {
 }
 
 resource "aws_security_group" "tp_security_group" {
-  description = "Security group to allow inbound SCP & outbound 8080 (Airflow) connections"
+  description = "Security group to allow inbound SCP (SSH) & 8080 (Airflow) & 8081 (dbt documentation) connections "
   vpc_id      = var.vpc_id
 
   ingress {
@@ -23,6 +23,13 @@ resource "aws_security_group" "tp_security_group" {
   ingress {
     from_port   = 8080
     to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 8081
+    to_port     = 8081
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
