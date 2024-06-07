@@ -7,14 +7,8 @@ variable "key_name" {
 variable "instance_type" {
   description = "Instance type for EC2"
   type        = string
-  default     = "m4.xlarge"
+  default     = "m4.2xlarge"
 }
-
-# variable "repo_url" {
-#   description = "Repository url to clone into production machine (EC2)"
-#   type        = string
-#   default     = "https://github.com/ThiPauli/de_cicd_iac_demo.git"
-# }
 
 # From resource defined in Network Module
 variable "vpc_id" {

@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: fct_posts_summary
+    description: "This model aggregate posts metrics"
+  - name: fct_comments_summary
+    description: "This model aggregate comments metrics"

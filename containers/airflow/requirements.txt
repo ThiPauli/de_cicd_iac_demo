@@ -1,11 +1,23 @@
+# testing and validations
 pytest==8.2.1
 pydantic==2.7.2
 email-validator==2.1.1
-requests==2.32.3
-types-requests==2.32.0.20240602
-python-dotenv==1.0.1
+
+# aws
 apache-airflow-providers-amazon==8.23.0
+
+# dbt
+# dbt-databricks==1.7.0
+astronomer-cosmos==1.4.2
+apache-airflow-providers-databricks==6.5.0
+
+# formatting checks
 black==24.4.2
 isort==5.13.2
 mypy==1.10.0
 flake8==7.0.0
+
+# others
+requests==2.32.3
+types-requests==2.32.0.20240602
+python-dotenv==1.0.1

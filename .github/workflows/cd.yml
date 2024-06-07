@@ -24,3 +24,14 @@ jobs:
           SOURCE: ""
           TARGET: "/home/ubuntu/de_cicd_iac_demo"
           EXCLUDE: ".git"
+
+      - name: SSH into server and rebuild docker containers
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ubuntu/de_cicd_iac_demo
+            make down
+            make up
