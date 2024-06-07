@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: v_posts_comments
+    description: "This model combine posts and comments tables"

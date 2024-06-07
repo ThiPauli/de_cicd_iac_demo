@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_posts
+    description: "This model create a table for posts comming from S3 Bucket"
+    columns:
+      - name: id
+        description: "Primary key of the post"
+        tests:
+          - unique
+          - not_null
+      - name: userId
+        description: "Foreign key of the user that posted"
+        tests:
+          - not_null
+
+  - name: stg_comments
+    description: "This model create a table for comments comming from S3 Bucket"
+    columns:
+      - name: id
+        description: "Primary key of the comment"
+        tests:
+          - unique
+          - not_null
+      - name: postId
+        description: "Foreign key of the post that was commented"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_posts')
+              field: id

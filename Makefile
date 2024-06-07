@@ -23,14 +23,6 @@ sh:
 pytest:
 	docker exec airflow-webserver pytest -p no:warnings -v /opt/airflow/tests
 
-# # It will check the code formatting
-# format:
-# 	docker exec airflow-webserver python -m black --check -S --line-length 79 .
-
-# # It will check the import order
-# isort:
-# 	docker exec airflow-webserver isort --check-only --profile black .
-
 # It will check for type issues
 type:
 	docker exec airflow-webserver mypy --ignore-missing-imports /opt/airflow
@@ -66,3 +58,18 @@ ssh-ec2:
 # Helper command to print out the private_key content from the EC2 instance
 privatekey-ec2:
 	terraform -chdir=./terraform output -raw private_key
+
+####################################################################################################################
+# Transform data with dbt Core
+
+dbt-init:
+	cd dbt && dbt init tp_dbt
+
+dbt-run:
+	cd dbt/tp_dbt && dbt run
+
+dbt-test:
+	cd dbt/tp_dbt && dbt test
+
+dbt-docs:
+	cd dbt/tp_dbt && dbt docs generate && dbt docs serve --port 8081

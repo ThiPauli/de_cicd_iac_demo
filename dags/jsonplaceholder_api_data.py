@@ -22,7 +22,7 @@ S3_BUCKET_NAME = os.getenv("TP_BUCKET_NAME")
 def save_to_s3(data, key):
     s3_hook = S3Hook(aws_conn_id="aws_default")
     s3_hook.load_string(
-        string_data=json.dumps(data),
+        string_data=json.dumps(data, separators=(",", ":")),
         key=key,
         bucket_name=S3_BUCKET_NAME,
         replace=True,
