@@ -1,0 +1,49 @@
+name: Deploy dbt docs to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy-dbt-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dbt with Databricks connector
+        run: pip install dbt-databricks==1.8.1
+
+      - name: Set up dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          echo "
+          tp_dbt:
+            target: dev
+            outputs:
+              dev:
+                catalog: null
+                host: ${{ secrets.DBS_HOST }}
+                http_path: ${{ secrets.DBS_HTTP_PATH }}
+                schema: ${{ secrets.DBS_SCHEMA }}
+                threads: 1
+                token: ${{ secrets.DBS_TOKEN }}
+                type: databricks
+          " > ~/.dbt/profiles.yml
+
+      - name: Generate dbt docs
+        run: |
+          cd dbt/tp_dbt
+          dbt docs generate
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dbt/tp_dbt/target
