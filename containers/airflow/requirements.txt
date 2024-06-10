@@ -7,9 +7,9 @@ email-validator==2.1.1
 apache-airflow-providers-amazon==8.23.0
 
 # dbt
-# dbt-databricks==1.7.0
+dbt-databricks==1.8.1
 astronomer-cosmos==1.4.2
-apache-airflow-providers-databricks==6.5.0
+apache-airflow-providers-databricks
 
 # formatting checks
 black==24.4.2
