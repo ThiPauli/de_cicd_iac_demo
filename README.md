@@ -11,6 +11,7 @@
 - [Data Orchestration](#data-orchestration)
 - [Running the Project](#running-the-project)
 - [Testing](#testing)
+- [Documentation](#documentation)
 
 ## Introduction
 This project demonstrates a comprehensive data pipeline using Infrastructure as Code (IaC) with Terraform, CI/CD pipelines with GitHub Actions, and various tools for data transformation and orchestration. The project provisions infrastructure on AWS, orchestrates workflows with Airflow, performs data transformations with dbt Core, and uses Docker for containerization.
@@ -75,16 +76,16 @@ The infrastructure is provisioned using Terraform and includes:
 ### Continuous Integration (CI)
 - **Trigger**: New pull request to the main branch.
 - **Steps**:
-1. Clone the repository.
-2. Spin up Docker containers with Airflow.
-3. Run tests (type, lint, and pytest).
+   1. Clone the repository.
+   2. Spin up Docker containers with Airflow.
+   3. Run tests (type, lint, and pytest).
 
 ### Continuous Deployment (CD)
 - **Trigger**: New artifacts in the main branch.
 - **Steps**:
-1. Clone the repository.
-2. Deploy code to the EC2 instance.
-3. Rebuild Docker containers to apply changes.
+   1. Clone the repository.
+   2. Deploy code to the EC2 instance.
+   3. Rebuild Docker containers to apply changes.
 
 ## Data Ingestion
 Make API requests from [JSONPlaceholder](https://jsonplaceholder.typicode.com/) using `utils.py` to pull sample data and save the response to the AWS S3 bucket.
@@ -97,9 +98,11 @@ Make API requests from [JSONPlaceholder](https://jsonplaceholder.typicode.com/) 
 
 ## Data Orchestration
 ### Orchestration with Airflow
-- Airflow DAGs manage:
+Airflow DAGs manage:
 1. Data ingestion from APIs (require AWS connection) - DAG: `jsonplaceholder_api_data.py`
 2. Data transformation with dbt models using Astronomer Cosmos (require Databricks connection) - DAG: `dbt_pipeline.py`
+
+![airflow_dbt_pipeline](https://github.com/ThiPauli/de_cicd_iac_demo/blob/main/images/airflow_dbt_pipeline.png)
 
 ## Running the Project
 
@@ -139,3 +142,6 @@ Make API requests from [JSONPlaceholder](https://jsonplaceholder.typicode.com/) 
 - Validate DAG integrity regarding ID, tags and checking import errors using Pytest.
 ### Integration Tests
 - Use Pytest and Pydantic to validate API responses against expected data schemas.
+
+## Documentation
+The dbt project documentation provides an overview of the project's resources such as models, tests, and metrics. It includes metadata and lineage information to help you understand the latest production state of the data pipeline. The documentation is deployed on GitHub Pages using GitHub Actions with `deploy_dbt_docs.yml` and is available at: [dbt Project Documentation](https://thipauli.github.io/de_cicd_iac_demo/)
