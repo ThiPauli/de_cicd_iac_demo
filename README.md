@@ -113,6 +113,9 @@ Airflow DAGs manage:
 4. **Terraform**: Ensure Terraform is installed.
 5. **dbt**: Install dbt with credentials set at `~/.dbt/profiles.yml`.
 6. **Airflow Connections**: Create Airflow connections (Databricks and AWS) using the Airflow UI to run the DAG.
+7. **GitHub Actions secrets**: Set up the repository secrets by going to `Settings > Secrets > Actions > New repository secret` if you want to see the CI/CD pipelines in action.
+   - Define the secretes as declared in `cd.yml` like `SSH_PRIVATE_KEY` and `REMOTE_HOST` (copy `private_key` and `public_dns` contents from outputs by Terraform: `terraform/outputs.tf`), and `REMOTE_USER`: ubuntu
+   - Define the secretes as declared in `deploy_dbt_docs.yml` like `DBS_HOST`, `DBS_HTTP_PATH`, `DBS_SCHEMA`, `DBS_TOKEN` as defined the dbt credentials `~/.dbt/profiles.yml`
 
 ### Steps to Run the Project
 1. **Clone the Repository**:
