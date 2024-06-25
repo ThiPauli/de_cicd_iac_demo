@@ -8,6 +8,7 @@
 - [CI/CD Pipelines](#cicd-pipelines)
 - [Data Ingestion](#data-ingestion)
 - [Data Transformation](#data-transformation)
+- [Data Orchestration](#data-orchestration)
 - [Running the Project](#running-the-project)
 - [Testing](#testing)
 
@@ -86,7 +87,7 @@ The infrastructure is provisioned using Terraform and includes:
 3. Rebuild Docker containers to apply changes.
 
 ## Data Ingestion
-A DAG imports functions from `utils.py` to make API requests and save the response to the AWS S3 bucket.
+Make API requests from [JSONPlaceholder](https://jsonplaceholder.typicode.com/) using `utils.py` to pull sample data and save the response to the AWS S3 bucket.
 
 ## Data Transformation
 ### dbt Core with Databricks
@@ -94,8 +95,11 @@ A DAG imports functions from `utils.py` to make API requests and save the respon
 - **Views**: Join staging tables.
 - **Marts**: Aggregated metrics and summaries.
 
+## Data Orchestration
 ### Orchestration with Airflow
-- Airflow DAGs manage data ingestion from APIs, dbt runs using Astronomer Cosmos and require AWS and Databricks connections.
+- Airflow DAGs manage:
+1. Data ingestion from APIs (require AWS connection) - DAG: `jsonplaceholder_api_data.py`
+2. Data transformation with dbt models using Astronomer Cosmos (require Databricks connection) - DAG: `dbt_pipeline.py`
 
 ## Running the Project
 
