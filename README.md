@@ -1,5 +1,7 @@
 # Demo data project with IAC, CI/CD, testing and data manipulation with Terraform, Python, AWS, Airflow, DBT, and Databricks
 
+![architecture_de_project](https://github.com/ThiPauli/de_cicd_iac_demo/blob/main/images/architecture_de_project.png)
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Project Structure](#project-structure)
